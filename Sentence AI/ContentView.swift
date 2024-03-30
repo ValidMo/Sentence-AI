@@ -42,13 +42,7 @@ struct ContentView: View {
         }
         .padding()
         Divider()
-        
-        Text("<Chatbot's answer placerholder>")
-            .padding()
-            .background(Color.black)
-            .foregroundColor(Color.white)
-            .clipShape(Capsule())
-        
+
     }
 }
 
