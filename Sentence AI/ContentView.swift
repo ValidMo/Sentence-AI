@@ -15,20 +15,30 @@ struct ContentView: View {
         @State var text: String = ""
         
         VStack {
-           
-            TextField("Enter your sentence here...", text: $text)
-                .frame(width: .infinity)
-                .padding(5)
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(15)
-            
-            Button(action: {
-                //run the business logic here:)
-            }, label: {
-                Image(systemName: "text.magnifyingglass")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
-            })
+            ScrollView {
+                ForEach(chatController.sentences){ sentence in
+                    MessageView(message: sentence)
+                        .padding(5)
+                }
+                
+            }
+            Divider()
+            HStack{
+                TextField("Enter your sentence here...", text: $text)
+                    .frame(width: .infinity)
+                    .padding(5)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(15)
+                
+                Button(action: {
+                    chatController.sendMessageToChatBot(text)
+                    text = ""
+                }, label: {
+                    Image(systemName: "text.magnifyingglass")
+                        .imageScale(.large)
+                        .foregroundStyle(.tint)
+                })
+            }
         }
         .padding()
         Divider()
